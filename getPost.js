@@ -9,8 +9,12 @@ var firstServer = http.createServer((request, response) => {
     })
     request.on('end', function () {
         var params = queryString.parse(url.parse(request.url).query)
-        var jsonParams = JSON.stringify(params)
-        response.end(jsonParams)
+        var stringParams = JSON.stringify(params)
+        var jsonPost = JSON.parse(postData)
+        for(value in jsonPost){
+            console.log(value)
+        }
+        response.end('urlquery:'+stringParams+'jsonquery:'+postData)
     })
 })
 firstServer.listen(9090)
