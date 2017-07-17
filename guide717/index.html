@@ -1,0 +1,51 @@
+<form id='form1' action='index.html' method='post'>
+    <div>
+        姓 <input id='firstnameInput' type="text" name="firstname" value="陆小凤888">
+    </div>
+    <div>
+        名 <input id='usernameInput' type="text" name="username" value="JIM">
+    </div>
+    <input type="submit" value="提交">
+    <div id='putData'>PUT提交</div>
+    <div id='deleteData'>DELETE提交</div>
+    <div id='showAll'>查看数据</div>
+    <div id='result'></div>
+</form>
+<script>
+    let buttonPut = document.querySelector('#putData')
+    let buttonDelete = document.querySelector('#deleteData')
+    let button = document.querySelector('#showAll')
+    button.addEventListener('click', e => {
+        window.location.pathname = '/showAll'
+    })
+    buttonPut.addEventListener('click', e => {
+        let obj = {
+            firstname: document.querySelector('#firstnameInput').value,
+            username: document.querySelector('#usernameInput').value
+        }
+
+        let xhr = new XMLHttpRequest()
+        xhr.open('put', 'index.html', true)
+        xhr.onload = e => {
+            if (xhr.status === 200) {
+                document.querySelector('#result').innerHTML = xhr.response
+            }
+        }
+        xhr.send(JSON.stringify(obj))
+    })
+    buttonDelete.addEventListener('click', e => {
+        let obj = {
+            firstname: document.querySelector('#firstnameInput').value,
+            username: document.querySelector('#usernameInput').value
+        }
+
+        let xhr = new XMLHttpRequest()
+        xhr.open('delete', 'index.html', true)
+        xhr.onload = e => {
+            if (xhr.status === 200) {
+                document.querySelector('#result').innerHTML = xhr.response
+            }
+        }
+        xhr.send(JSON.stringify(obj))
+    })
+</script>
