@@ -5,11 +5,14 @@
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "express-session": "^1.15.4",
     "loadtest": "^2.3.0",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.1",
     "mysql": "^2.13.0",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "serve-index": "^1.9.0",
+    "serve-static": "^1.12.3"
   }
 }
