@@ -11,6 +11,7 @@
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.1",
     "mysql": "^2.13.0",
+    "pug": "^2.0.0-rc.2",
     "request": "^2.81.0",
     "serve-index": "^1.9.0",
     "serve-static": "^1.12.3"

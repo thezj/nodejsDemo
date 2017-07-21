@@ -1,0 +1,12 @@
+doctype html
+html
+    head
+        title 
+            =name
+    body
+        div 
+            p(style={border:'1px solid red'}) #{name}`s Pug source code!
+            ul
+                each item in mymotor
+                    li
+                        =item
