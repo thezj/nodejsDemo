@@ -1,0 +1,56 @@
+<div style="height:500px;">
+    <div id="display" style="height:500px; float:left; width:300px; border:1px solid gray; padding:8px; overflow:hidden;overflow-y:auto;">
+
+    </div>
+    <div id='userView' style="height:500px; float:left; width:200px; border:1px solid gray; padding:8px; overflow:hidden;overflow-y:auto;"></div>
+</div>
+<br>
+<input id='nickname' type="text" name="" value="">
+<button id='loginButton' type="button" onclick='login()'>登陆</button>
+<br>
+<input id="message" type="text" name="" value="">
+<button type="button" onclick='sendMSG()'>发送</button>
+
+
+<script src="/socket.io/socket.io.js">
+</script>
+<script>
+    let socket = io.connect()
+    let msgView = document.querySelector('#display')
+    let showMsg = message => {
+        msgView.innerHTML = msgView.innerHTML + message + '<br>'
+    }
+    socket.on('login', data => {
+        if (data.length !== 0) {
+            let userstring = ''
+            data.map(name => {
+                userstring += name + '----已登陆<br>'
+            })
+            document.querySelector('#userView').innerHTML = userstring
+        }
+    })
+    socket.on('newMSG', MSG => {
+        showMsg(MSG)
+    })
+    // socket.on('message', data => {
+    //     console.log(data)
+    //     socket.send('消息已接受到')
+    // })
+    // socket.on('news', data => {
+    //     console.log(data)
+    //     socket.emit('reply', '你也好呀')
+    // })
+    socket.on('disconnect', i => {
+        showMsg('服务器断开链接')
+    })
+
+    let login = i => {
+        let name = document.querySelector('#nickname').value
+        socket.emit('login', name)
+        document.querySelector('#loginButton').setAttribute('disabled', 'disabled')
+    }
+    let sendMSG = i => {
+        let MSG = document.querySelector('#message').value
+        socket.emit('sayHi', MSG)
+    }
+</script>
